@@ -5,11 +5,11 @@ body{
     
     background:url("../images/BACKGROUND.jpg")  no-repeat;
     background-size: cover;
-    display: grid;
+    /* display: grid;
     align-items: center;
     /* /* justify-content: center; */
-    height: 100vh; 
-    background-size: 100%;
+    /* height: 100vh; 
+    background-size: 100%; */ 
 }
 
 /* heading fonts */
@@ -23,21 +23,41 @@ body{
    font-family: 'Libre Caslon Text', serif;
     color: #2c1810;
 }
-.container-fluid{
+/* defining diffrent font sizes */
+.fontSmall{
+    font-size: small;
+}
+
+.fontMedium{
+    font-size: medium;
+}
+
+.fontLarge{
+    font-size: large;
+}
+
+.fontXLarge{
+    font-size:x-large;
+}
+/* .container-fluid{
     width: 90%;
     height: 90vh;
     box-shadow: 0 10px 20px #2c181077, 0 6px 6px #2c181077; 
     /* border-radius: 5px; */
-    background-color: rgba(255, 255, 255, 0.15);
+    /* background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
+} */ 
 
+/* section part style */
+section{
+    /* border: 2px solid red; */
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    justify-content: center;
+    
 }
-/* navigation setting */
-.navbar{
-  
-    /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  */
+section img{
+    width: 100%;
 
-    /* padding-left: 2em; */
-    /* margin-left: auto;
-    margin-right: auto; */
 }

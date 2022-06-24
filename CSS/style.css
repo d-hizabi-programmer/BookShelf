@@ -1,0 +1,48 @@
+/* universal selector */
+*{
+    /* clearing browser default margin-padding */
+    margin:0%;
+    padding: 0%;
+}
+
+/* font weight bold */
+.fontBold{
+    font-weight: bold;
+}
+
+/* specifying colors for fonts */
+.fontDark{
+    color: #4d2557;
+}
+.fontPink{
+    color: #BF6d9a;
+}
+/* background color */
+.bgColor{
+    color: white;
+}
+
+/*  heading fonts */
+.headfonts{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25em;
+}
+
+/* para fonts */
+.parafonts{
+    font-family: 'Lato', sans-serif;
+}
+
+/* lower border of navigaion bar */
+.activ{
+    border-bottom: 5px solid #bf6d9a; 
+    /* color: #BF6d9a; */
+    color: #bf6d9a;
+}
+
+/* adding hover effect */
+.nav-link:hover{
+    color: #bf6d9a;
+    border-bottom: 5px solid #4d2557;
+}
+ 

@@ -24,11 +24,12 @@
 
     <!-- linking custom style sheeet -->
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/index.css">
 </head>
 
 <body>
     <!-- navigation bar -->
-    <nav class="navbar navbar-expand-lg bgColor">
+    <nav class="navbar navbar-expand-lg bgColor p-0">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="images/BRAND.png" alt="TheBooktown-Let's get lost in the pages" width="300" height="70">
@@ -41,10 +42,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 headfonts fontBold fontDark">
                     <li class="nav-item">
-                        <a class="nav-link fontDark " aria-current="page" href="#">HOME</a>
+                        <a class="nav-link fontDark activ" aria-current="page" href="#">HOME</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link fontDark activ" href="store.html">STORE</a>
+                        <a class="nav-link fontDark" href="store.html">STORE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fontDark" href="contact.html">CONTACT</a>
@@ -53,10 +54,39 @@
             </div>
         </div>
     </nav>
+
+    <!--section as banner-->
+    <section role="banner" class="d-flex flex-lg-row flex-md-column-reverse flex-sm-column-reverse p-0 m-0">
+        <div class="align-self-center">
+            <h1 class=" fontDark headfonts text-center fs-1"><span class="fontBold">THE</span><span>BOOK</span><span
+                    class="fontPink fontBold">TOWN</span><span class="fs-5"> Let's get lost in the pages</span>
+            </h1>
+            <p class=" fontDark parafonts text-center pt-2 p-5 fs-5">Buy books for the best price! <br>From literature
+                to educational resources, we have a
+                lot of books to offer you.
+                <br>
+                <input type="button" class="p-2  mt-3 fontBold btn btnBg" value="GO TO STORE" href="store.html"
+                    onclick="go()">
+
+            </p>
+        </div>
+        <img src="images/banner.gif" class="flex-grow-1" alt="Kids reading books">
+
+    </section>
+    <!-- footer -->
+    <!-- <footer class="p-0 m-0">
+        <p class="fontDark parafonts text-center p-0 fontBold"> &copy; Saniya Memon</p>
+
+    </footer> -->
     <!-- bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+    <!-- to delay eanimation -->
+    <script type='text/javascript'>document.addEventListener('DOMContentLoaded', function () {
+            window.setTimeout(document.querySelector('img').classList.add('animated'), 6000);
+        })</script>
 </body>
 
 </html>

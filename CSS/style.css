@@ -45,4 +45,16 @@
     color: #bf6d9a;
     border-bottom: 5px solid #4d2557;
 }
+
+/* styling buttons */
  
+.btn:hover{
+    /* color: whitesmoke; */
+    border-width: 3px;
+    border-color: #BF6d9a;
+          
+}
+.btn{
+    background-color: #4d2557;
+    color: whitesmoke;
+}

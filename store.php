@@ -7,6 +7,7 @@ require("mysqli_connect.php");
        echo $_POST["buyNow"];
     session_start();
     $_SESSION['bookId']=$_POST["buyNow"];
+    
     header("Location: checkout.php");
      }
 
@@ -99,9 +100,19 @@ if($r){
          <h5 class="card-title headfonts fontDark text-wrap"><?php echo strtoupper($row["bookName"]); ?></h5>
         <p class="card-text parafonts fontPink"><?php echo strtoupper($row["bookAuthor"]); ?></p>
         <form method="post">
-            <button class="btn parafonts fs-6" type="submit" value="<?php echo $row['bookId'];?>" name="buyNow">Buy Now</button>
-          
-     </form>
+            <?php 
+                    if($row['quantity']<=0){            
+            ?>
+            <button class="btn parafonts fs-6 disabled" type="submit" value="<?php echo $row['bookId'];?>" name="buyNow">Buy Now</button>
+            <p class="parafonts fontPink">Sold Out!</p>
+            <?php 
+                    }else{
+                        ?>
+            <button class="btn parafonts fs-6 " type="submit" value="<?php echo $row['bookId'];?>" name="buyNow">Buy Now</button>
+            <?php
+                    }           
+            ?>
+        </form>
     </div>
      </div>
    </div>

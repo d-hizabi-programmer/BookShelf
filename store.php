@@ -1,3 +1,16 @@
+<?php
+// requiring database connection file
+require("mysqli_connect.php");
+
+// query to select data from table
+$q1="SELECT * FROM book";
+
+// executing query
+$r = @mysqli_query ($dbc, $q1); 
+
+    // checking wether $r is not empty
+if($r){
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,53 +67,44 @@
             </div>
         </div>
     </nav>
+    <!-- heading -->
+    <h1 class=" fontDark headfonts text-center fs-3">NEW <span class="fontPink fontBold">&</span> TRENDING!</h1>
+    <p class=" fontPink parafonts text-center fs-5">Explore the new world from Authors</p>
+    <!-- cards for displaying data from databse -->
+    
+ <div class="container-fluid d-flex flex-wrap justify-content-evenly align-items-center">
+    <?php 
+     // creating loop
+     while($row=mysqli_fetch_array($r)){
+        $imgSrc="images/".$row['bookName']."jpg";
+    ?>
+        <div class="card mb-3 m-auto" style="max-width: 350px;">
+         <div class="row g-2">
+             <div class="col-md-4">
+                 <img src="images/War and peace.jpg" class="img-fluid" alt="<?php echo $row["bookName"].' by '.$row["bookAuthor"]?>">
+            </div>
+        <div class="col-md-8">
+         <div class="card-body">
+         <h5 class="card-title"><?php echo $row["bookName"]; ?></h5>
+        <p class="card-text"><?php echo $row["bookAuthor"];?></p>
+        
+       </div>
+     </div>
+   </div>
+     </div>
+   <?php
+   }   
+
+mysqli_free_result($r);
+     }
+ ?>
+   
+</div>
+
+
     <!-- bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
-
-        <?php
-
-
-// requiring database connection file
-require("mysqli_connect.php");
-// require("../store.html");
-
-
-// query to select data from table
-$q1="SELECT * FROM book";
-
-// executing query
-$r = @mysqli_query ($dbc, $q1); 
-
-// checking wether $r is not empty
-if($r){
-    //table header
-    echo'<table width="80%" ">
-    <thead> 
-      <tr>
-          <th align="left">SR. NO.</th>
-          <th align="left">USERNAME</th>
-          <th align="left">PROFILE</th>
-          <th align="left">IMAGE</th>
-      </tr>
-    </thead>
-    <tbody>';
-
-    //creating loop
-    while($row=mysqli_fetch_array($r)){
-        // $imgSrc="uploads/".$row['username']."/".$row['image'];
-      echo'
-      <tr>
-     
-      <td align="left">'.$row['bookName'].'</td><td align="left">'.$row['bookId'].'</td></tr>';
-      
-    }
-    echo'</tbody></table>';
-    mysqli_free_result($r);
-
-}
-?>
 </body>
-
 </html>

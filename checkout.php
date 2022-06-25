@@ -1,7 +1,7 @@
 <?php
 
 
-
+$nameError="";
 require("mysqli_connect.php");
 session_start();
 $id=$_SESSION['bookId'];
@@ -11,7 +11,7 @@ $r=@mysqli_query($dbc,$query);
 if($r){
     $row = mysqli_fetch_array($r);
 
-$quantity= $row['quantity'];
+$currentQuantity= $row['quantity'];
 $price=$row['price'];
 $bookName=$row['bookName'];
 $bookAuthor=$row['bookAuthor']; 
@@ -105,13 +105,14 @@ $bookAuthor=$row['bookAuthor'];
         <div class="form-group d-flex p-1">
             <!-- first name and lastname -->
             <input type="text" class="form-control m-2 fontDark parafonts " name="cardNum" id="cardNum" placeholder="Card Number E.x, xxxx-xxxx-xxxx-xxxx" required>
-         </div>
+            <span class="fontPink"><?php echo $nameError;?></span>
+        </div>
 
          <!-- quantity -->
          <div class="form-group d-flex p-1">
             <!-- quantity and  price per head-->
        
-            <input type="number" min="1" max="<?php echo $quantity;?>" name="quantity" class=" form-control m-2 fontDark parafonts" id="quantity" placeholder="Quantity">
+            <input type="number" min="1" max="<?php echo $currentQuantity;?>" name="quantity" class=" form-control m-2 fontDark parafonts" id="quantity" placeholder="Quantity">
             <input type="text"  value="<?php if (isset($price)) {echo $price.' (Per Unit)';}?>" class="form-control m-2 fontDark parafonts" id="price" disabled>
 
         </div>
@@ -137,6 +138,26 @@ $bookAuthor=$row['bookAuthor'];
 
     // calculating total including tax
     $total=round($quantity*$price+($quantity*$price*0.13),2);
+    // $pattern='/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/';
+    // if(preg_match($pattern,$firstName)){
+    //     $nameError="EWrror!";
+    // }
+    $qua=$currentQuantity-$quantity;
+     //inserting data into database
+     $q="INSERT INTO orders(firstName,lastName,paymentOption,cardNum,total,bookId,quantity) values('$firstName','$lastName','$paymentOption','$cardNum','$total','$id','$quantity')";
+     $r=@mysqli_query($dbc,$q);
+     if($r){
+        // for updating quantity in book table
+        $q1 = "UPDATE book SET quantity='$qua' WHERE bookId='$id'";
+        if(mysqli_query($dbc, $q1)){
+           $success="Order placed successfully!";
+        } else {
+            echo "ERROR: Could not able to execute $q1. " . mysqli_error($dbc);
+        }
+
+     }else{
+        echo '<p>' . mysqli_error($dbc) . '<br><br>Query: ' . $q .'</p>';
+     }
     }
 ?>
 <fieldset class="headfonts fontDark cardBorder p-2 m-2">
@@ -146,7 +167,7 @@ $bookAuthor=$row['bookAuthor'];
         <p class="parafonts fontDark p-1"><?php echo "Subtotal: ".$quantity." * ".$price;?></p>   
         <p class="parafonts fontDark p-1"><?php echo "Order Total: ".$total."  Including tax(13%)";?></p>
         <p class="parafonts fontDark p-1"><?php echo "Purchased Item: ".$bookName." by ".$bookAuthor;?></p>
-        <p class="parafonts fontPink fontBold p-1">Order placed successfully!</p>
+        <p class="parafonts fontPink fontBold p-1"><?php echo $success;?></p>
         <a href="index.html" class="fontDark btn m-2 fs-5">Continue Shopping!<a>
         
 </fieldset>
@@ -154,12 +175,13 @@ $bookAuthor=$row['bookAuthor'];
 session_destroy();
 ?>
 
-    <footer>
-        <p class="fontPink parafonts text-center fs-5 mb-0">&copy; Saniya Memon- 2022</p>
-    </footer>
+   
     <?php
     
 }?>
+ <footer>
+        <p class="fontPink parafonts text-center fs-5 mb-0">&copy; Saniya Memon- 2022</p>
+    </footer>
     <!-- bootstrap JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

@@ -2,6 +2,15 @@
 // requiring database connection file
 require("mysqli_connect.php");
 
+
+    if(isset($_POST["buyNow"])){
+       echo $_POST["buyNow"];
+    session_start();
+    $_SESSION['bookId']=$_POST["buyNow"];
+    header("Location: checkout.php");
+     }
+
+
 // query to select data from table
 $q1="SELECT * FROM book";
 
@@ -77,18 +86,23 @@ if($r){
      // creating loop
      while($row=mysqli_fetch_array($r)){
         $imgSrc="images/".$row['bookName']."jpg";
-    ?>
-        <div class="card mb-3 m-auto" style="max-width: 350px;">
-         <div class="row g-2">
-             <div class="col-md-4">
-                 <img src="images/War and peace.jpg" class="img-fluid" alt="<?php echo $row["bookName"].' by '.$row["bookAuthor"]?>">
-            </div>
-        <div class="col-md-8">
-         <div class="card-body">
-         <h5 class="card-title"><?php echo $row["bookName"]; ?></h5>
-        <p class="card-text"><?php echo $row["bookAuthor"];?></p>
         
-       </div>
+    ?>
+    <!-- creating card design -->
+        <div class="card mb-3 ms-1 cardBorder" style="max-width: 340px;">
+         <div class="row g-2">
+             <div class="col-md-5">
+                 <img src="images/War and peace.jpg" class="img-fluid rounded-start" alt="<?php echo $row["bookName"].' by '.$row["bookAuthor"]?>">
+            </div>
+        <div class="col-md-7">
+         <div class="card-body">
+         <h5 class="card-title headfonts fontDark text-wrap"><?php echo strtoupper($row["bookName"]); ?></h5>
+        <p class="card-text parafonts fontPink"><?php echo strtoupper($row["bookAuthor"]); ?></p>
+        <form method="post">
+            <button class="btn parafonts fs-6" type="submit" value="<?php echo $row['bookId'];?>" name="buyNow">Buy Now</button>
+          
+     </form>
+    </div>
      </div>
    </div>
      </div>
@@ -97,6 +111,7 @@ if($r){
 
 mysqli_free_result($r);
      }
+
  ?>
    
 </div>

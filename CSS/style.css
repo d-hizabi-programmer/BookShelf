@@ -53,7 +53,7 @@ body{
 /* styling buttons */
 .btn:hover{
     /* color: whitesmoke; */
-    border-width: 3px;
+    border-width: 1px;
     border-color: #BF6d9a;
           
 }
@@ -66,4 +66,10 @@ body{
 footer{
     background-color: #4d2557;
     margin: 0%;
+}
+
+/* styling border */
+.cardBorder{
+    border: 1px solid #BF6d9a;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);  
 }

@@ -63,7 +63,7 @@ $bookAuthor=$row['bookAuthor'];
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 headfonts fontBold fontDark">
                     <li class="nav-item">
-                        <a class="nav-link fontDark activ" aria-current="page" href="#">HOME</a>
+                        <a class="nav-link fontDark" aria-current="page" href="index.html">HOME</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link fontDark" href="store.php">STORE</a>
@@ -160,7 +160,7 @@ $bookAuthor=$row['bookAuthor'];
      }
     }
 ?>
-<fieldset class="headfonts fontDark cardBorder p-2 m-2">
+<fieldset class="headfonts fontDark cardBorder p-2 m-2 mb-5">
     <legend class="headfonts fontDark fontBold" >ORDER SUMMARY</legend>
         <p class="headfonts fontDark fs-5 fontBold p-1"><?php echo strtoupper($firstName)." ".strtoupper($lastName);?></p>
         <p class="parafonts fontDark p-1"><?php echo "Payment done by: ".strtoupper($paymentOption)." card ending with xxxx-xxxx-xxxx-".substr($cardNum,-4);?></p>
@@ -169,7 +169,6 @@ $bookAuthor=$row['bookAuthor'];
         <p class="parafonts fontDark p-1"><?php echo "Purchased Item: ".$bookName." by ".$bookAuthor;?></p>
         <p class="parafonts fontPink fontBold p-1"><?php echo $success;?></p>
         <a href="index.html" class="fontDark btn m-2 fs-5">Continue Shopping!<a>
-        
 </fieldset>
 <?php
 session_destroy();
@@ -179,9 +178,7 @@ session_destroy();
     <?php
     
 }?>
- <footer>
-        <p class="fontPink parafonts text-center fs-5 mb-0">&copy; Saniya Memon- 2022</p>
-    </footer>
+ 
     <!-- bootstrap JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

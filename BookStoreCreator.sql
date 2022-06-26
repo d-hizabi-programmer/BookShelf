@@ -7,8 +7,10 @@ bookDescirption varchar(500) not null,
 totalPages int,
 publishYear int,
 quantity int,
-price double not null
+price double not null,
+imagePath varchar(50)
 );
+
 
 #creating order table to store Order's information
 CREATE TABLE orders(

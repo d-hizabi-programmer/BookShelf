@@ -86,14 +86,14 @@ if($r){
     <?php 
      // creating loop
      while($row=mysqli_fetch_array($r)){
-        $imgSrc="images/".$row['bookName']."jpg";
+        $imgSrc=$row['imagePath'];
         
     ?>
     <!-- creating card design -->
         <div class="card mb-3 ms-1 cardBorder" style="max-width: 340px;">
          <div class="row g-2">
              <div class="col-md-5">
-                 <img src="images/War and peace.jpg" class="img-fluid rounded-start" alt="<?php echo $row["bookName"].' by '.$row["bookAuthor"]?>">
+                 <img src="<?php echo $imgSrc;?>" class="img-fluid rounded-start" alt="<?php echo $row["bookName"].' by '.$row["imagePath"];?>">
             </div>
         <div class="col-md-7">
          <div class="card-body">

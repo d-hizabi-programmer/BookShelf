@@ -178,7 +178,9 @@ session_destroy();
     <?php
     
 }?>
- 
+ <p class="fontDark parafonts text-end fs-5 pe-5">Made with <span class="fontPink fs-1 ">&hearts; </span> by
+        Saniya
+        Memon- 2022</p>
     <!-- bootstrap JS -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

@@ -68,9 +68,9 @@ $bookAuthor=$row['bookAuthor'];
                     <li class="nav-item ">
                         <a class="nav-link fontDark" href="store.php">STORE</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link fontDark" href="contact.html">CONTACT</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

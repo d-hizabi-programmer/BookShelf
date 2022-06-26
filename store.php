@@ -70,9 +70,9 @@ if($r){
                     <li class="nav-item ">
                         <a class="nav-link fontDark activ" href="#">STORE</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link fontDark" href="contact.html">CONTACT</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

@@ -1,10 +1,10 @@
 <?php
-
-
-$nameError="";
+// including database file
 require("mysqli_connect.php");
+// starting sesson to get variable
 session_start();
 $id=$_SESSION['bookId'];
+// echo "ID:".$id;
 
 $query="SELECT bookName,bookAuthor,quantity,price FROM book where bookId='$id'";
 $r=@mysqli_query($dbc,$query);
@@ -83,7 +83,7 @@ $bookAuthor=$row['bookAuthor'];
             <!-- first name and lastname -->
             <input type="text" class=" form-control m-2 fontDark parafonts" name="firstName" id="firstName" placeholder="First Name" required>
             <input type="text" class=" form-control m-2 fontDark parafonts" name="lastName" id="lastName" placeholder="Last Name" required>
-        
+            <!-- <span class="fontPink parafonts"><?php echo $nameErr;?></span> -->
         </div>
          <!-- payment option -->
          <div class="form-group d-flex p-1">
@@ -105,7 +105,7 @@ $bookAuthor=$row['bookAuthor'];
         <div class="form-group d-flex p-1">
             <!-- first name and lastname -->
             <input type="text" class="form-control m-2 fontDark parafonts " name="cardNum" id="cardNum" placeholder="Card Number E.x, xxxx-xxxx-xxxx-xxxx" required>
-            <span class="fontPink"><?php echo $nameError;?></span>
+            <!-- <span class="fontPink"><?php echo $cardErr;?></span> -->
         </div>
 
          <!-- quantity -->
@@ -116,7 +116,7 @@ $bookAuthor=$row['bookAuthor'];
             <input type="text"  value="<?php if (isset($price)) {echo $price.' (Per Unit)';}?>" class="form-control m-2 fontDark parafonts" id="price" disabled>
 
         </div>
-        <input type="submit" name="submit"  value="Submit" class="fontDark btn m-2 fs-5" <?php if(isset($_POST['submit'] ))  {echo "disabled";} ?>>
+        <input type="submit" name="submit"  value="Submit" class="fontDark btn m-2 fs-5 <?php if (isset($_POST['submit'])) {echo "disabled";}?>">
         
 </form>
 <?php
@@ -133,16 +133,26 @@ $bookAuthor=$row['bookAuthor'];
     $cardNum=mysqli_real_escape_string($dbc,strip_tags(trim($_POST['cardNum'])));
     $quantity=mysqli_real_escape_string($dbc,strip_tags(trim($_POST['quantity'])));
 
-    // echo $paymentOption;
-    // echo $_POST["firstName"];
-
+    // $patternCard='/^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/';
+    // $patternName='/^[A-Za-z]{1,}/';
+    // if(!preg_match($patternCard,$cardNum)){
+    //     $cardErr="Name should contain Alphabets ony!";
+    //     // echo $cardErr;
+    //     echo "checkpoint-1";
+    // }
+    // if(!preg_match($patternName,$firstName) || preg_match($patternName,$lastName)){
+    //     $nameErr="card must be in xxxx-xxxx-xxxx-xxxx format!";
+    //     // echo $nameErr;
+    //     echo "checkpoint-2";
+    // }
+    // if($cardErr=="" && $nameErr=="") {
+        
+    //     echo "checkpoint-3";
     // calculating total including tax
     $total=round($quantity*$price+($quantity*$price*0.13),2);
-    // $pattern='/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/';
-    // if(preg_match($pattern,$firstName)){
-    //     $nameError="EWrror!";
-    // }
+    
     $qua=$currentQuantity-$quantity;
+    
      //inserting data into database
      $q="INSERT INTO orders(firstName,lastName,paymentOption,cardNum,total,bookId,quantity) values('$firstName','$lastName','$paymentOption','$cardNum','$total','$id','$quantity')";
      $r=@mysqli_query($dbc,$q);
@@ -152,15 +162,14 @@ $bookAuthor=$row['bookAuthor'];
         if(mysqli_query($dbc, $q1)){
            $success="Order placed successfully!";
         } else {
-            echo "ERROR: Could not able to execute $q1. " . mysqli_error($dbc);
+            $success= "ERROR: Could not able to execute $q1. " . mysqli_error($dbc);
         }
 
      }else{
-        echo '<p>' . mysqli_error($dbc) . '<br><br>Query: ' . $q .'</p>';
-     }
-    }
-?>
-<fieldset class="headfonts fontDark cardBorder p-2 m-2 mb-5">
+        $success= '<p>' . mysqli_error($dbc) . '<br><br>Query: ' . $q .'</p>';
+     
+    }?>
+    <fieldset class="headfonts fontDark cardBorder p-2 m-2">
     <legend class="headfonts fontDark fontBold" >ORDER SUMMARY</legend>
         <p class="headfonts fontDark fs-5 fontBold p-1"><?php echo strtoupper($firstName)." ".strtoupper($lastName);?></p>
         <p class="parafonts fontDark p-1"><?php echo "Payment done by: ".strtoupper($paymentOption)." card ending with xxxx-xxxx-xxxx-".substr($cardNum,-4);?></p>
@@ -171,13 +180,19 @@ $bookAuthor=$row['bookAuthor'];
         <a href="index.html" class="fontDark btn m-2 fs-5">Continue Shopping!<a>
 </fieldset>
 <?php
+}
+
+?>
+
+<?php
 session_destroy();
+             }
 ?>
 
    
     <?php
     
-}?>
+?>
  <p class="fontDark parafonts text-end fs-5 pe-5">Made with <span class="fontPink fs-1 ">&hearts; </span> by
         Saniya
         Memon- 2022</p>

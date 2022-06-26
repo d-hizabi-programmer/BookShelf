@@ -5,6 +5,7 @@ require("mysqli_connect.php");
 
     if(isset($_POST["buyNow"])){
        echo $_POST["buyNow"];
+    //    starting session and setting session variable
     session_start();
     $_SESSION['bookId']=$_POST["buyNow"];
     

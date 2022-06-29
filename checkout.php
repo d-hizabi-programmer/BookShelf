@@ -63,7 +63,7 @@ $bookAuthor=$row['bookAuthor'];
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 headfonts fontBold fontDark">
                     <li class="nav-item">
-                        <a class="nav-link fontDark" aria-current="page" href="index.html">HOME</a>
+                        <a class="nav-link fontDark" aria-current="page" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link fontDark" href="store.php">STORE</a>
